@@ -13,16 +13,40 @@ export class AppComponent {
   value = '';
 
   loading = false;
-  name = '';
-  email = '';
-  subject = '';
-  message = '';
   emailError = false;
 
-  sendEmail() {
+  name = '';
+  email = '';
+  password = '';
+
+  items: any[] = [];
+
+  signup() {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
+      this.resetForm();
     }, 2000);
+  }
+
+  ngOnInit(): void {
+    this.items = [];
+    //   {
+    //     label: 'homeLabel',
+    //     icon: 'pi pi-home',
+    //     // command: () => this.goToHome(),
+    //   },
+    //   {
+    //     label: 'shareLabel',
+    //     icon: 'pi pi-share-alt',
+    //     // command: () => this.goToShare(),
+    //   },
+    // ];
+  }
+
+  private resetForm() {
+    this.name = '';
+    this.email = '';
+    this.password = '';
   }
 }

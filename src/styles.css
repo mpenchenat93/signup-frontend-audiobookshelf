@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-html {
+
+
+html,
+body {
+  margin: 0;
   height: 100%;
-  background-image: linear-gradient(to right bottom, #2e2e2e, #303030, #313131, #333, #353535, #343434, #323232, #313131, #2c2c2c, #282828, #232323, #1f1f1f);
+  background-image: linear-gradient(to right bottom, #f2f2f2, #e6e6e6);
   background-repeat: no-repeat;
-  /* Empêche la répétition de l'image ou du gradient */
   background-size: cover;
-  /* Ajuste le background pour qu'il couvre tout l'écran */
 }

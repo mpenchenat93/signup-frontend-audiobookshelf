@@ -1,4 +1,52 @@
 <!--<router-outlet /> -->
+<div class="card">
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          padding-right: 20px;
+          padding-left: 30px;
+          gap: 10px;
+        "
+      >
+        <img
+          src="icon.d3d4aef.svg"
+          alt="logo"
+          style="height: 40px; margin-right: 10px"
+        />
+        <h3
+          [style]="{ margin: 0, 'white-space': 'nowrap' }"
+          style="display: flex; gap: 7px"
+        >
+          <span>audiobookshelf</span> <span>-</span> <span>Maria Valtorta</span>
+        </h3>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="item" let-item let-root="root">
+      <a pRipple class="flex align-items-center p-menuitem-link">
+        <span [class]="item.icon" style="margin-right: 7px"></span>
+        <span class="ml-2">{{ item.label }}</span>
+        <span
+          *ngIf="item.shortcut"
+          style="padding-left: 5px"
+          class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1"
+          >{{ item.shortcut }}</span
+        >
+        <i
+          style="padding-left: 5px"
+          *ngIf="item.items"
+          [ngClass]="[
+            'pi',
+            root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto'
+          ]"
+        ></i>
+      </a>
+    </ng-template>
+  </p-menubar>
+</div>
+
 <div class="main">
   <div style="width: 100%; height: 100%; margin-bottom: 30px">
     <p-card>
@@ -24,7 +72,7 @@
               />
             </div>
             <div style="display: flex; gap: 5px; flex-direction: column">
-              <label for="email">EMAIL</label>
+              <label for="email">Email</label>
               <input
                 style="width: 100%"
                 name="email"
@@ -54,15 +102,15 @@
                 placeholder="****"
                 pInputText
                 autocomplete="off"
-                [(ngModel)]="subject"
+                [(ngModel)]="password"
               />
             </div>
             <div>
               <p-button
                 type="submit"
                 label="S'inscrire"
-                [disabled]="!message || !name || !email || !subject || loading"
-                (onClick)="sendEmail()"
+                [disabled]="!name || !email || !password || loading"
+                (onClick)="signup()"
               ></p-button>
             </div>
           </div>
