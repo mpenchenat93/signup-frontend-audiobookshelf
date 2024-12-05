@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from './api/api.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'frontend';
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   value = '';
 
@@ -23,10 +24,20 @@ export class AppComponent {
 
   signup() {
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-      this.resetForm();
-    }, 2000);
+    console.log(this.name, this.email, this.password);
+
+    this.apiService.signup(this.name, this.email, this.password).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.loading = false;
+        this.resetForm();
+      },
+      error: (err) => {
+        console.log(err);
+        this.loading = false;
+        this.resetForm();
+      },
+    });
   }
 
   ngOnInit(): void {

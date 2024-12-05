@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://backend-topaz-tau.vercel.app/api",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
