@@ -28,10 +28,25 @@ export class AppComponent {
     this.visible = true;
   }
 
-  signup() {
-    this.loading = true;
-    console.log(this.name, this.email, this.password);
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
+  signup() {
+    this.loading = false;
+    if (!this.name || !this.email || !this.password) {
+      return;
+    }
+
+    if (!this.isValidEmail(this.email)) {
+      this.emailError = true;
+      return;
+    } else {
+      this.emailError = false;
+    }
+
+    this.loading = true;
     this.apiService.signup(this.name, this.email, this.password).subscribe({
       next: (data) => {
         console.log(data);
@@ -48,17 +63,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.items = [];
-    //   {
-    //     label: 'homeLabel',
-    //     icon: 'pi pi-home',
-    //     // command: () => this.goToHome(),
-    //   },
-    //   {
-    //     label: 'shareLabel',
-    //     icon: 'pi pi-share-alt',
-    //     // command: () => this.goToShare(),
-    //   },
-    // ];
   }
 
   private resetForm() {
