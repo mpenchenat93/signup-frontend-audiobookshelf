@@ -7,9 +7,11 @@ import { ApiService } from './api/api.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'frontend';
-
   constructor(private apiService: ApiService) {}
+
+  audiobookshelfUrl = 'https://audiovaltorta.studycompanion.fr';
+
+  visible = false;
 
   value = '';
 
@@ -21,6 +23,10 @@ export class AppComponent {
   password = '';
 
   items: any[] = [];
+
+  showDialog() {
+    this.visible = true;
+  }
 
   signup() {
     this.loading = true;
