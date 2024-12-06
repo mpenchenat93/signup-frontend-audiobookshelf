@@ -1,0 +1,28 @@
+<div class="card">
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          padding-right: 20px;
+          padding-left: 30px;
+          gap: 10px;
+        "
+      >
+        <img
+          src="ico/icon.svg"
+          alt="logo"
+          style="height: 40px; margin-right: 10px"
+        />
+        <h3
+          [style]="{ margin: 0, 'white-space': 'nowrap' }"
+          style="display: flex; gap: 7px"
+        >
+          <span *ngIf="width > 425">audiobookshelf</span>
+          <span *ngIf="width > 425">-</span> <span>Maria Valtorta</span>
+        </h3>
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>

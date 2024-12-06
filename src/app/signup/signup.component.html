@@ -1,0 +1,188 @@
+<div class="main">
+  <p-toast position="bottom-right" key="br" />
+  <div style="width: 100%; height: 100%; margin-bottom: 30px">
+    <p-card>
+      <div class="p20-mp0">
+        <h2>Créer un compte</h2>
+
+        <div style="position: absolute; right: 30px; top: 80px">
+          <p-progressSpinner *ngIf="loading" ariaLabel="loading" />
+        </div>
+        <form>
+          <div style="display: flex; gap: 10px; flex-direction: column">
+            <div style="display: flex; gap: 5px; flex-direction: column">
+              <label for="name">Nom d'utilisateur</label>
+              <input
+                style="width: 100%"
+                name="name"
+                id="name"
+                type="text"
+                placeholder="John Doe"
+                pInputText
+                autocomplete="off"
+                [class]="usernameError ? 'ng-invalid ng-dirty' : ''"
+                [(ngModel)]="name"
+              />
+              <span
+                *ngIf="usernameError"
+                id="username-help"
+                style="float: left; padding-left: 5px; color: #e24c4c"
+              >
+                Nom d'utilisateur déjà utilisé.
+              </span>
+            </div>
+            <div style="display: flex; gap: 5px; flex-direction: column">
+              <label for="email">Email</label>
+              <input
+                style="width: 100%"
+                name="email"
+                id="email"
+                type="email"
+                placeholder="john@doe.com"
+                pInputText
+                autocomplete="off"
+                [class]="emailError ? 'ng-invalid ng-dirty' : ''"
+                [(ngModel)]="email"
+              />
+              <span
+                *ngIf="emailError"
+                id="last-name-help"
+                style="float: left; padding-left: 5px; color: #e24c4c"
+              >
+                Format email incorrect.
+              </span>
+            </div>
+            <div style="display: flex; gap: 5px; flex-direction: column">
+              <label for="password">Mot de passe</label>
+              <input
+                style="width: 100%"
+                name="password"
+                id="password"
+                type="password"
+                placeholder="****"
+                pInputText
+                autocomplete="off"
+                [(ngModel)]="password"
+              />
+            </div>
+            <div>
+              <p-button
+                type="submit"
+                label="S'inscrire"
+                [disabled]="!name || !email || !password || loading"
+                (onClick)="signup()"
+              ></p-button>
+            </div>
+          </div>
+        </form>
+
+        <div style="display: flex; justify-content: end">
+          <p>
+            Vous avez déjà un compte ?
+            <a [href]="audiobookshelfUrl"> Page de connexion </a>
+          </p>
+        </div>
+      </div>
+
+      <p-accordion [activeIndex]="0">
+        <p-accordionTab header="Pourquoi créer un compte ?">
+          <p>
+            Avec le compte démo/invité, vous avez déjà accès à toute la
+            bibliothèque et pouvez explorer librement les livres audio
+            disponibles. Cependant, créer un compte personnel sur Audiobookshelf
+            vous offre des
+            <strong>fonctionnalités supplémentaires</strong>
+            et une expérience bien plus personnalisée.
+          </p>
+          <h4>Les avantages d’un compte personnel :</h4>
+          <ul>
+            <li>
+              <strong>Historique d’écoute personnalisé :</strong> Suivez votre
+              progression pour chaque livre audio. Reprenez là où vous vous êtes
+              arrêté, sans jamais perdre votre place.
+            </li>
+            <li>
+              <strong>Listes de lecture et favoris :</strong> Créez des
+              playlists, marquez vos livres préférés et organisez votre
+              bibliothèque selon vos envies.
+            </li>
+            <li>
+              <strong>Personnalisation des préférences :</strong> Ajustez vos
+              paramètres de lecture et d’affichage pour une expérience
+              parfaitement adaptée à vos besoins.
+            </li>
+            <li>
+              <strong>Sécurité et confidentialité :</strong> Vos préférences et
+              votre historique sont sauvegardés uniquement dans votre compte
+              personnel et protégés.
+            </li>
+            <li>
+              <strong>Synchronisation multi-appareils :</strong> Accédez à vos
+              données personnelles depuis n'importe quel appareil. Continuez
+              votre lecture sans interruption, où que vous soyez.
+            </li>
+          </ul>
+          <p>N'hésitez pas, c'est gratuit !</p>
+        </p-accordionTab>
+        <p-accordionTab header="Audiobookshelf disponible aussi sur...">
+          <p>
+            Audiobookshelf s'adapte à tous les supports (ordinateur, tablette ou
+            téléphone).
+          </p>
+          <p>
+            Vous pouvez trouver aussi Audiobookshelf en
+            <b>application mobile</b> sur <b>Google Play Store</b> et
+            <b>Apple App Store</b>. L'application est encore en version bêta. Il
+            peut donc y avoir des bugs.
+          </p></p-accordionTab
+        >
+      </p-accordion>
+
+      <p-divider></p-divider>
+
+      <div class="p20-mp0">
+        <section>
+          <h3>Contactez-nous</h3>
+          <p>
+            Vous rencontrez des problèmes lors de la création de votre compte ou
+            vous avez des questions. Vous pouvez nous contacter.
+          </p>
+
+          <div
+            style="display: flex; flex-wrap: wrap"
+            [style]="{ gap: contactWrap }"
+          >
+            <div>
+              <strong>Horaires</strong> <br />
+              Du lundi au vendredi<br />
+              De 9h30 à 12h et de 14h à 17h.
+            </div>
+            <div>
+              <strong>Contact</strong><br />
+              Téléphone : 05 65 43 68 67<br />
+              Email : associationmariavaltorta&#64;gmail.com
+            </div>
+          </div>
+        </section>
+      </div>
+    </p-card>
+  </div>
+</div>
+
+<!--<p-dialog
+  header="Compte créé avec succès"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '40rem' }"
+>
+  <p-messages severity="success">
+    <ng-template pTemplate>
+      Votre compte a été créé avec succès. Vous pouvez dès à présent vous
+      connecter.
+    </ng-template>
+  </p-messages>
+
+  <div style="display: flex; justify-content: end">
+    <a [href]="audiobookshelfUrl">Se rendre sur la page de connexion</a>
+  </div>
+</p-dialog>-->
