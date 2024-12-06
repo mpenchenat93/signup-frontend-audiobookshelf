@@ -1,27 +1,85 @@
-# Frontend
+# Frontend for Audiobookshelf Signup
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
+## Description
 
-## Development server
+This is a frontend application built with **Angular 18** designed to interact with the Audiobookshelf backend API. It enables users to register an account on the Audiobookshelf instance.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Key Features
 
-## Code scaffolding
+1. **User Registration**:  
+   A simple and responsive form where users can input their `email`, `name`, and `password` to sign up.  
+   The form sends the user data to the backend API for processing.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. **Validation**:  
+   - Real-time form validation to ensure correct input.
+   - Displays error messages for invalid fields.
 
-## Build
+3. **API Integration**:  
+   Communicates with the backend hosted on Vercel to handle user registration.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+4. **Responsive Design**:  
+   Fully responsive design optimized for mobile and desktop browsers.
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Setup and Installation
 
-## Running end-to-end tests
+### Prerequisites
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Node.js**: Version 16 or higher.
+- **Angular CLI**: Install globally using `npm install -g @angular/cli`.
 
-## Further help
+### Steps to Run Locally
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mpenchenat93/signup-frontend-audiobookshelf.git
+   cd frontend-angular-audiobookshelf
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   ng serve
+   ```
+
+4. Open in your browser:
+   Visit `http://localhost:4200`.
+
+---
+
+## Deployment
+
+This project is optimized for deployment on **Vercel** or any static file hosting service like **Netlify** or **Firebase Hosting**.  
+To build the project for production:
+```bash
+ng build --prod
+```
+
+Upload the contents of the `dist/` directory to your hosting platform.
+
+---
+
+## Environment Variables
+
+change getApiUrl method from `src/app/api/api.service.ts`.
+
+---
+
+## License
+
+This project is licensed under the **Modified MIT License**. See the [LICENSE](./LICENSE) file for more details.
+
+---
+
+## Contact
+
+For any questions or suggestions, please contact:
+
+**Matthieu Penchenat**  
+Email: [matthieu.penchenat@protonmail.com](mailto:matthieu.penchenat@protonmail.com)
+LinkedIn: [Matthieu Penchenat](https://www.linkedin.com/in/penchenat-matthieu/)
