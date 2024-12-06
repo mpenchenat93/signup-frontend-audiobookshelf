@@ -20,7 +20,8 @@
           [style]="{ margin: 0, 'white-space': 'nowrap' }"
           style="display: flex; gap: 7px"
         >
-          <span>audiobookshelf</span> <span>-</span> <span>Maria Valtorta</span>
+          <span *ngIf="width > 425">audiobookshelf</span>
+          <span *ngIf="width > 425">-</span> <span>Maria Valtorta</span>
         </h3>
       </div>
     </ng-template>
@@ -200,20 +201,19 @@
             vous avez des questions. Vous pouvez nous contacter.
           </p>
 
-          <div style="display: flex; gap: 40px">
+          <div
+            style="display: flex; flex-wrap: wrap"
+            [style]="{ gap: contactWrap }"
+          >
             <div>
-              <p>
-                <strong>Horaires</strong> <br />
-                Du lundi au vendredi<br />
-                De 9h30 à 12h et de 14h à 17h.
-              </p>
+              <strong>Horaires</strong> <br />
+              Du lundi au vendredi<br />
+              De 9h30 à 12h et de 14h à 17h.
             </div>
             <div>
-              <p>
-                <strong>Contact</strong><br />
-                Téléphone : 05 65 43 68 67<br />
-                Email : associationmariavaltorta&#64;gmail.com
-              </p>
+              <strong>Contact</strong><br />
+              Téléphone : 05 65 43 68 67<br />
+              Email : associationmariavaltorta&#64;gmail.com
             </div>
           </div>
         </section>

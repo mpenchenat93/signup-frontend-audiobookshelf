@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ApiService } from './api/api.service';
 
@@ -28,6 +28,16 @@ export class AppComponent {
   password = '';
 
   items: any[] = [];
+
+  contactWrap = '40px';
+
+  width = 0;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.width = window.innerWidth;
+    this.contactWrap = this.width > 620 ? '40px' : '20px';
+  }
 
   showDialog() {
     this.visible = true;
@@ -83,6 +93,8 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.items = [];
+    this.width = window.innerWidth;
+    this.contactWrap = this.width > 620 ? '40px' : '20px';
   }
 
   private resetForm() {
