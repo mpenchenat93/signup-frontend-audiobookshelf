@@ -221,3 +221,21 @@
     </p-card>
   </div>
 </div>
+
+<p-dialog
+  header="Compte créé avec succès"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '40rem' }"
+>
+  <p-messages severity="success">
+    <ng-template pTemplate>
+      Votre compte a été créé avec succès. Vous pouvez dès à présent vous
+      connecter.
+    </ng-template>
+  </p-messages>
+
+  <div style="display: flex; justify-content: end">
+    <a [href]="audiobookshelfUrl">Se rendre sur la page de connexion</a>
+  </div>
+</p-dialog>

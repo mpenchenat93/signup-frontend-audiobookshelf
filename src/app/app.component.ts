@@ -67,6 +67,7 @@ export class AppComponent {
       next: () => {
         this.loading = false;
         this.resetForm();
+        this.showDialog();
       },
       error: (err) => {
         this.loading = false;
