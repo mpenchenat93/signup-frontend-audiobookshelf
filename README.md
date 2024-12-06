@@ -72,7 +72,17 @@ change getApiUrl method from `src/app/api/api.service.ts`.
 
 ## License
 
-This project is licensed under the **Modified MIT License**. See the [LICENSE](./LICENSE) file for more details.
+This project is licensed under a Modified MIT License. The following conditions apply:
+
+Mandatory Anonymization:
+Any reuse, modification, or redistribution must remove all explicit or implicit references to Maria Valtorta, her writings, and any associated entities (e.g., the Maria Valtorta association or foundation).
+
+Removal of Related Information:
+All contact information, mentions, or links related to the Maria Valtorta association or foundation must be removed prior to redistribution.
+
+The remainder of the project is licensed under the standard MIT terms, allowing free use, modification, and redistribution as long as these conditions are met and the copyright notice is preserved.
+
+For the full license text, see the LICENSE file.
 
 ---
 
