@@ -5,19 +5,18 @@
 
 html,
 body {
-  background-image: linear-gradient(to right bottom, #f2f2f2, #e6e6e6);
-  background-repeat: no-repeat;
+  background-color: #f2f2f2;
   background-size: cover;
-
   height: auto;
   min-height: 100%;
   margin: 0;
 }
 
-
 body {
   padding: 0;
   line-height: 1.3;
+  display: flex;
+  flex-direction: column;
 }
 
 app-root,
@@ -25,4 +24,12 @@ app-root,
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+a:link {
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
 }
