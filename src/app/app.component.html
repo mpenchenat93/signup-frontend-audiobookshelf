@@ -48,6 +48,7 @@
 </div>
 
 <div class="main">
+  <p-toast position="bottom-right" key="br" />
   <div style="width: 100%; height: 100%; margin-bottom: 30px">
     <p-card>
       <div class="p20-mp0">
@@ -68,8 +69,16 @@
                 placeholder="John Doe"
                 pInputText
                 autocomplete="off"
+                [class]="usernameError ? 'ng-invalid ng-dirty' : ''"
                 [(ngModel)]="name"
               />
+              <span
+                *ngIf="usernameError"
+                id="username-help"
+                style="float: left; padding-left: 5px; color: #e24c4c"
+              >
+                Nom d'utilisateur déjà utilisé.
+              </span>
             </div>
             <div style="display: flex; gap: 5px; flex-direction: column">
               <label for="email">Email</label>

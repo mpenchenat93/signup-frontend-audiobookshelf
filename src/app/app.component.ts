@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { ApiService } from './api/api.service';
 
 @Component({
@@ -7,7 +8,10 @@ import { ApiService } from './api/api.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private messageService: MessageService
+  ) {}
 
   audiobookshelfUrl = 'https://audiovaltorta.studycompanion.fr';
 
@@ -16,6 +20,7 @@ export class AppComponent {
   value = '';
 
   loading = false;
+  usernameError = false;
   emailError = false;
 
   name = '';
@@ -26,6 +31,16 @@ export class AppComponent {
 
   showDialog() {
     this.visible = true;
+  }
+
+  throwErrorF() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Erreur interne',
+      detail: 'Si le problème persiste, contactez-nous.',
+      key: 'br',
+      life: 5000,
+    });
   }
 
   isValidEmail(email: string): boolean {
@@ -47,16 +62,20 @@ export class AppComponent {
     }
 
     this.loading = true;
+    this.usernameError = false;
     this.apiService.signup(this.name, this.email, this.password).subscribe({
-      next: (data) => {
-        console.log(data);
+      next: () => {
         this.loading = false;
         this.resetForm();
       },
       error: (err) => {
-        console.log(err);
         this.loading = false;
-        this.resetForm();
+        if (err?.error?.details?.includes('Username already taken')) {
+          this.usernameError = true;
+        } else {
+          this.throwErrorF();
+          this.resetForm();
+        }
       },
     });
   }
