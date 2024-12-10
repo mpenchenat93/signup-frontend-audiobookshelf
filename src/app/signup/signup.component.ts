@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
+import { ReCaptchaV3Service } from 'ng-recaptcha-18';
 import { MessageService } from 'primeng/api';
+import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api/api.service';
 
 @Component({
@@ -10,7 +12,8 @@ import { ApiService } from '../api/api.service';
 export class SignupComponent {
   constructor(
     private apiService: ApiService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private recaptchaV3Service: ReCaptchaV3Service
   ) {}
 
   audiobookshelfUrl = 'https://audiovaltorta.studycompanion.fr';
@@ -39,6 +42,12 @@ export class SignupComponent {
     this.contactWrap = this.width > 620 ? '40px' : '20px';
   }
 
+  async executeImportantAction() {
+    return await firstValueFrom(
+      this.recaptchaV3Service.execute('importantAction')
+    );
+  }
+
   showDialog() {
     this.visible = true;
   }
@@ -58,7 +67,7 @@ export class SignupComponent {
     return emailRegex.test(email);
   }
 
-  signup() {
+  async signup() {
     this.loading = false;
     if (!this.name || !this.email || !this.password) {
       return;
@@ -71,24 +80,28 @@ export class SignupComponent {
       this.emailError = false;
     }
 
+    const token = await this.executeImportantAction();
+
     this.loading = true;
     this.usernameError = false;
-    this.apiService.signup(this.name, this.email, this.password).subscribe({
-      next: () => {
-        this.loading = false;
-        this.resetForm();
-        this.showDialog();
-      },
-      error: (err) => {
-        this.loading = false;
-        if (err?.error?.details?.includes('Username already taken')) {
-          this.usernameError = true;
-        } else {
-          this.throwErrorF();
+    this.apiService
+      .signup(this.name, this.email, this.password, token)
+      .subscribe({
+        next: () => {
+          this.loading = false;
           this.resetForm();
-        }
-      },
-    });
+          this.showDialog();
+        },
+        error: (err) => {
+          this.loading = false;
+          if (err?.error?.details?.includes('Username already taken')) {
+            this.usernameError = true;
+          } else {
+            this.throwErrorF();
+            this.resetForm();
+          }
+        },
+      });
   }
 
   ngOnInit(): void {

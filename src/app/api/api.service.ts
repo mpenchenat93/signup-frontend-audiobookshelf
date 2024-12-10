@@ -13,8 +13,8 @@ export class ApiService {
     return 'https://backend-topaz-tau.vercel.app/api';
   }
 
-  signup(name: string, email: string, password: string) {
+  signup(name: string, email: string, password: string, captchaToken: string) {
     const url = `${this.getApiUrl()}/signup`;
-    return this.http.post(url, { name, email, password });
+    return this.http.post(url, { name, email, password, captchaToken });
   }
 }
