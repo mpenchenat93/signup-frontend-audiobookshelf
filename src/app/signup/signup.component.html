@@ -53,6 +53,19 @@
               </span>
             </div>
             <div style="display: flex; gap: 5px; flex-direction: column">
+              <label for="phone">Numéro de téléphone</label>
+              <input
+                style="width: 100%"
+                name="phone"
+                id="phone"
+                type="tel"
+                placeholder="+33 6 12 34 56 78"
+                pInputText
+                autocomplete="off"
+                [(ngModel)]="phone"
+              />
+            </div>
+            <div style="display: flex; gap: 5px; flex-direction: column">
               <label for="password">Mot de passe</label>
               <input
                 style="width: 100%"
@@ -69,7 +82,7 @@
               <p-button
                 type="submit"
                 label="S'inscrire"
-                [disabled]="!name || !email || !password || loading"
+                [disabled]="!name || !email || !password || !phone || loading"
                 (onClick)="signup()"
               ></p-button>
             </div>

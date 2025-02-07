@@ -29,6 +29,7 @@ export class SignupComponent {
   name = '';
   email = '';
   password = '';
+  phone = '';
 
   items: any[] = [];
 
@@ -69,7 +70,7 @@ export class SignupComponent {
 
   async signup() {
     this.loading = false;
-    if (!this.name || !this.email || !this.password) {
+    if (!this.name || !this.email || !this.password || !this.phone) {
       return;
     }
 
@@ -85,7 +86,7 @@ export class SignupComponent {
     this.loading = true;
     this.usernameError = false;
     this.apiService
-      .signup(this.name, this.email, this.password, token)
+      .signup(this.name, this.email, this.password, this.phone, token)
       .subscribe({
         next: () => {
           this.loading = false;
@@ -114,5 +115,6 @@ export class SignupComponent {
     this.name = '';
     this.email = '';
     this.password = '';
+    this.phone = '';
   }
 }
